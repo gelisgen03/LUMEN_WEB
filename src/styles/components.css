@@ -1,0 +1,286 @@
+/* ------------------------------------------------------------ card spotlight
+ * A soft light follows the cursor inside cards (--mx/--my set by motion.tsx and
+ * transitioned, so the light glides instead of jumping). Hover lifts the card gently. */
+.spot {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    border-color var(--dur-base) var(--ease-smooth),
+    transform var(--dur-base) var(--ease-smooth),
+    box-shadow var(--dur-base) var(--ease-smooth),
+    --mx 0.35s var(--ease-smooth),
+    --my 0.35s var(--ease-smooth);
+}
+.spot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(420px circle at var(--mx) var(--my), var(--glow), transparent 58%);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-smooth);
+  pointer-events: none;
+}
+.spot:hover,
+.spot:focus-within {
+  border-color: color-mix(in oklab, var(--gold) 70%, var(--border));
+  transform: translate3d(0, -5px, 0);
+  box-shadow: 0 24px 48px -28px rgba(15, 30, 61, 0.5);
+}
+.spot:hover::before,
+.spot:focus-within::before {
+  opacity: 1;
+}
+.spot .spot-icon {
+  transition:
+    transform var(--dur-base) var(--ease-smooth),
+    background-color var(--dur-base) var(--ease-smooth),
+    color var(--dur-base) var(--ease-smooth),
+    box-shadow var(--dur-base) var(--ease-smooth);
+}
+.spot:hover .spot-icon {
+  transform: rotate(-6deg) scale(1.08);
+  background: var(--gold);
+  color: var(--navy);
+  box-shadow: 0 0 0 7px color-mix(in oklab, var(--gold) 22%, transparent);
+}
+.spot .spot-img {
+  transition: transform 1.4s var(--ease-smooth);
+}
+.spot:hover .spot-img {
+  transform: scale(1.06);
+}
+.spot .spot-arrow {
+  transition: transform var(--dur-base) var(--ease-smooth);
+}
+.spot:hover .spot-arrow,
+.spot:focus-within .spot-arrow {
+  transform: translateX(6px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .spot:hover,
+  .spot:focus-within {
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------------ buttons */
+/* A band of light sweeps across on hover. */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  transition:
+    box-shadow var(--dur-base) var(--ease-smooth),
+    transform var(--dur-base) var(--ease-smooth),
+    background-color var(--dur-base) var(--ease-smooth);
+}
+.btn-shine:hover {
+  transform: translate3d(0, -2px, 0);
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: -2px auto -2px -60%;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: skewX(-18deg) translateX(0);
+  transition: transform 1.1s var(--ease-smooth);
+  pointer-events: none;
+}
+.btn-shine:hover::after {
+  transform: skewX(-18deg) translateX(420%);
+}
+
+/* Underline that grows from the left (nav links, inline CTAs). */
+.link-grow {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat;
+  transition: background-size var(--dur-base) var(--ease-smooth);
+}
+.link-grow:hover,
+.link-grow[aria-current="page"] {
+  background-size: 100% 2px;
+}
+
+/* ------------------------------------------------------------------ marquee */
+/* Programmes ticker. Content is duplicated once; slows down on hover instead of stopping dead. */
+.marquee {
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 46s linear infinite;
+  will-change: transform;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ------------------------------------------------------------ reading bar */
+.scroll-progress {
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: grow linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+/* ------------------------------------------------------------ sidebar drawer */
+/* Native <dialog>; slides in and out with the same soft curve. */
+.drawer {
+  margin: 0;
+  height: 100dvh;
+  max-height: 100dvh;
+  width: min(24rem, 100vw);
+  max-width: 100vw;
+  margin-left: auto; /* opens from the right, next to the menu button */
+  padding: 0;
+  border: 0;
+  background: var(--background);
+  color: var(--foreground);
+  transform: translateX(100%);
+  transition:
+    transform 0.7s var(--ease-smooth),
+    overlay 0.7s allow-discrete,
+    display 0.7s allow-discrete;
+}
+.drawer[open] {
+  transform: none;
+}
+@starting-style {
+  .drawer[open] {
+    transform: translateX(100%);
+  }
+}
+.drawer::backdrop {
+  background: rgba(8, 16, 36, 0);
+  backdrop-filter: blur(0);
+  transition:
+    background 0.7s var(--ease-smooth),
+    backdrop-filter 0.7s var(--ease-smooth),
+    overlay 0.7s allow-discrete,
+    display 0.7s allow-discrete;
+}
+.drawer[open]::backdrop {
+  background: rgba(8, 16, 36, 0.55);
+  backdrop-filter: blur(4px);
+}
+@starting-style {
+  .drawer[open]::backdrop {
+    background: rgba(8, 16, 36, 0);
+    backdrop-filter: blur(0);
+  }
+}
+.drawer[open] .drawer-item {
+  animation: fade-up 0.8s var(--ease-smooth) both;
+  animation-delay: calc(0.12s + var(--i, 0) * 0.06s);
+}
+
+/* ---------------------------------------------------------------------- FAQ */
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details .faq-icon {
+  transition:
+    transform var(--dur-base) var(--ease-smooth),
+    background-color var(--dur-base) var(--ease-smooth);
+}
+details[open] .faq-icon {
+  transform: rotate(45deg);
+}
+details[open] .faq-body {
+  animation: fade-up 0.7s var(--ease-smooth) both;
+}
+/* Smooth height where supported (Chrome 131+): the answer slides open. */
+@supports (interpolate-size: allow-keywords) {
+  details {
+    interpolate-size: allow-keywords;
+  }
+  details::details-content {
+    height: 0;
+    overflow: clip;
+    transition:
+      height var(--dur-base) var(--ease-smooth),
+      content-visibility var(--dur-base) allow-discrete;
+  }
+  details[open]::details-content {
+    height: auto;
+  }
+}
+
+/* Text lit by a moving light (hero keyword). */
+.text-lumen {
+  background: linear-gradient(100deg, var(--gold) 0%, #fff4d6 45%, var(--gold) 55%, #f08c2e 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-position: 100% 0;
+  /* background-position animates on the main thread, so the light sweeps once, well after
+     the page has loaded, then the word stays lit. */
+  animation: lumen-sweep 3.2s var(--ease-in-out-soft) 4s 1;
+}
+@keyframes lumen-sweep {
+  0%,
+  100% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 0 0;
+  }
+}
+
+/* ------------------------------------------------------------ burger button */
+/* Three borderless lines; on hover they even out and light up gold. */
+.burger-line {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition:
+    width var(--dur-base) var(--ease-smooth),
+    background-color var(--dur-base) var(--ease-smooth),
+    box-shadow var(--dur-base) var(--ease-smooth);
+}
+.burger:hover .burger-line,
+.burger:focus-visible .burger-line {
+  width: 1.75rem;
+  background: var(--gold);
+  box-shadow: 0 0 10px rgba(244, 183, 68, 0.7);
+}
+
+/* ---------------------------------------------------------- page transition */
+/* src/app/[locale]/template.tsx re-mounts on every navigation: short, soft fade-in. */
+.page-enter {
+  /* backwards (not both): once finished no transform remains, so position: fixed children
+     (section rail) and sticky asides keep working. */
+  animation: page-in 0.45s var(--ease-smooth) backwards;
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation-name: fade-in;
+  }
+}

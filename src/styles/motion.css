@@ -1,0 +1,197 @@
+/*
+ * Shared motion. Rules of thumb used across the site:
+ *  - only transform and opacity are animated (compositor, no repaint);
+ *  - entrances are long and decelerate softly (--ease-smooth, ~1.1s), with small distances;
+ *  - loops use a symmetric in-out curve so they never "snap" at the turn.
+ */
+
+/* Scroll reveal. Hidden only when JS is running (html.js), so content is never lost. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0) scale(0.985);
+  transition:
+    opacity var(--dur-slow) var(--ease-smooth),
+    transform calc(var(--dur-slow) + 0.2s) var(--ease-smooth);
+  transition-delay: calc(var(--i, 0) * 110ms);
+  will-change: opacity, transform;
+}
+.js [data-reveal="left"] {
+  transform: translate3d(-28px, 0, 0);
+}
+.js [data-reveal="right"] {
+  transform: translate3d(28px, 0, 0);
+}
+.js [data-reveal="zoom"] {
+  transform: scale(0.95);
+}
+/* Decorative tracks that animate themselves once visible, but are never hidden. */
+.js [data-reveal="line"] {
+  opacity: 1;
+  transform: none;
+}
+.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+/* Once revealed, release the layer. */
+.js [data-reveal].is-done {
+  will-change: auto;
+}
+
+/* Page-load entrance for above-the-fold elements (hero text, page headers). */
+.fade-up {
+  animation: fade-up var(--dur-slow) var(--ease-smooth) both;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translate3d(10px, -32px, 0);
+    opacity: 1;
+  }
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(-1.2deg);
+  }
+}
+@keyframes cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(7px);
+    opacity: 1;
+  }
+}
+@keyframes grow {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.scroll-cue {
+  animation: cue 2.6s var(--ease-in-out-soft) infinite;
+}
+
+/*
+ * Reduced motion (OS setting "show animations" off). We don't freeze the whole site:
+ * large movements that can cause discomfort (rotation, floating, parallax, sliding, zoom)
+ * are removed, while gentle light effects that stay in place (fades, twinkles, pulses
+ * along the network lines, the glow breathing) keep the page alive.
+ */
+@media (prefers-reduced-motion: reduce) {
+  /* Reveal becomes a pure fade. */
+  .js [data-reveal],
+  .js [data-reveal="left"],
+  .js [data-reveal="right"],
+  .js [data-reveal="zoom"] {
+    transform: none;
+    transition: opacity 0.9s var(--ease-smooth);
+  }
+  .fade-up {
+    animation-name: fade-in;
+  }
+  .hero-rays,
+  .hero-beam,
+  .net-float,
+  .fx-orbit,
+  .scroll-cue,
+  .marquee-track {
+    animation: none;
+  }
+  .shooting-light {
+    display: none;
+  }
+  /* Network fades in instead of zooming. */
+  .net-intro {
+    transform: none;
+    animation-name: fade-in;
+  }
+  /* Dust twinkles in place instead of drifting. */
+  .particle {
+    animation-name: twinkle-soft;
+  }
+  /* Ripples fade instead of expanding. */
+  .fx-ripple {
+    animation-name: fade-ring;
+  }
+  .drawer {
+    transition-duration: 0.01ms;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes twinkle-soft {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes fade-ring {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(2.4);
+  }
+}

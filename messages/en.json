@@ -1,0 +1,289 @@
+{
+  "meta": {
+    "siteTitle": "LUMEN – Learning and Digital Modernisation European Network",
+    "siteDescription": "Paris-based non-profit association. LUMEN designs and coordinates EU-funded projects (Erasmus+, European Solidarity Corps, Horizon Europe) for education, digital skills and the green transition."
+  },
+  "nav": {
+    "home": "Home",
+    "association": "About",
+    "actions": "What we do",
+    "projets": "Projects",
+    "partenaires": "Be our partner",
+    "contact": "Contact",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainLabel": "Main navigation",
+    "skipToContent": "Skip to content",
+    "language": "Language",
+    "languageNames": { "fr": "Français", "en": "English" },
+    "darkMode": "Dark mode",
+    "sidebarTagline": "The light of knowledge, for everyone.",
+    "descriptions": {
+      "home": "Overview",
+      "association": "Mission, vision, values, team",
+      "actions": "Our domains and themes",
+      "projets": "Our European projects",
+      "partenaires": "Build a project together",
+      "contact": "Write to us"
+    },
+    "onThisPage": "On this page"
+  },
+  "footer": {
+    "about": "Non-profit association (loi 1901) based in Paris. We build bridges between technology, education and society, with partners in France and across Europe.",
+    "explore": "Explore",
+    "legal": "Information",
+    "legalNotice": "Legal notice",
+    "privacy": "Privacy",
+    "euTitle": "Designed for European Union programmes",
+    "euText": "We design our projects for Erasmus+, the European Solidarity Corps, CERV, Horizon Europe and Digital Europe.",
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "readMore": "Learn more",
+    "seeAll": "See all",
+    "backTo": "Back",
+    "forWhom": "Who it's for",
+    "methods": "How",
+    "programme": "Programme",
+    "sdgs": "Sustainable Development Goals",
+    "sdg": "SDG {n}",
+    "partners": "Partners",
+    "partnersPending": "Consortium being built: come and join it.",
+    "audiences": {
+      "jeunes": "Young people (13–30)",
+      "professionnels": "Youth and education professionals",
+      "organisations": "NGOs, schools and local authorities"
+    },
+    "status": {
+      "en-preparation": "In preparation",
+      "en-cours": "Ongoing",
+      "termine": "Completed"
+    }
+  },
+  "home": {
+    "metaTitle": "LUMEN – Lighting the way to a digital, inclusive and sustainable Europe",
+    "heroBadge": "Lumen (Latin): light",
+    "heroTitleLead": "Lighting",
+    "heroTitleRest": "the way to a digital, inclusive and sustainable Europe.",
+    "heroText": "LUMEN is a Paris-based association that designs and coordinates European projects for education, digital skills and the green transition, with and for young people.",
+    "heroPrimary": "Be our partner",
+    "heroSecondary": "Discover what we do",
+    "heroScroll": "Scroll",
+    "marqueeLabel": "Programmes and priorities",
+    "marquee": ["Erasmus+", "European Solidarity Corps", "CERV", "Horizon Europe", "Digital Europe", "Non-formal education", "Tech for Good", "Green transition", "Inclusion", "European mobility"],
+    "statsLabel": "LUMEN at a glance",
+    "stats": [
+      { "value": "2026", "count": false, "label": "Founded in Paris" },
+      { "value": "5", "count": true, "label": "Areas of action" },
+      { "value": "6", "count": true, "label": "Priority themes" },
+      { "value": "5", "count": true, "label": "EU programmes targeted" }
+    ],
+    "aboutEyebrow": "Who we are",
+    "aboutTitle": "An association that brings the light of knowledge where it is missing",
+    "aboutText": "LUMEN – Learning and Digital Modernisation European Network – is a non-profit association (loi 1901) founded in Paris in 2026. We believe the light of knowledge should be accessible to everyone. That is why we build bridges between technology, education and society.",
+    "aboutCta": "About the association",
+    "themesEyebrow": "Our themes",
+    "themesTitle": "What we work on",
+    "themesIntro": "Six threads run through all of our projects.",
+    "domainsEyebrow": "What we do",
+    "domainsTitle": "What we do",
+    "domainsIntro": "Five areas of action, from local workshops to European projects.",
+    "greenEyebrow": "Green thread",
+    "greenTitle": "Every project is designed to be sustainable",
+    "greenText": "The green transition is not a side topic: we build it into every project, from design to evaluation, following the Erasmus+ green priorities and the Sustainable Development Goals.",
+    "greenPoints": [
+      "Low-carbon mobility: train and car-sharing first (Green Travel)",
+      "Responsible digital: frugal tools, reused equipment",
+      "Circular economy and climate at the heart of learning content",
+      "Impact measured against SDGs 4, 10, 13 and 17"
+    ],
+    "processEyebrow": "Method",
+    "processTitle": "How we work",
+    "projectsEyebrow": "Projects",
+    "projectsTitle": "Projects in preparation",
+    "projectsIntro": "Concrete examples of what we are building with our European partners.",
+    "valuesEyebrow": "Our values",
+    "valuesTitle": "What guides us",
+    "teamEyebrow": "Team",
+    "teamTitle": "Our team",
+    "teamIntro": "A two-person board and a network of volunteers in France and across Europe.",
+    "ctaTitle": "Let's build your next European project together",
+    "ctaText": "NGO, school, local authority or company: whether you need a coordinator, a partner or a hosting organisation, write to us.",
+    "ctaPrimary": "Be our partner",
+    "ctaSecondary": "Write to us"
+  },
+  "mission": {
+    "missionTitle": "Mission",
+    "missionText": "Driving the digital transformation of society through education, innovation and European cooperation.",
+    "visionTitle": "Vision",
+    "visionText": "A Europe where every young person, whatever their starting point, has access to knowledge, future skills and an active place in a digital and sustainable society."
+  },
+  "themes": [
+    { "icon": "literacy", "title": "Digital literacy", "text": "Understanding, questioning and mastering everyday digital tools." },
+    { "icon": "participation", "title": "Youth participation", "text": "Giving young people a voice in the decisions that affect them." },
+    { "icon": "critical", "title": "Critical thinking", "text": "Checking information, spotting disinformation, building arguments." },
+    { "icon": "rights", "title": "Digital rights", "text": "Personal data, privacy and the ethics of artificial intelligence." },
+    { "icon": "inclusion", "title": "Inclusion", "text": "Priority for young people with fewer opportunities, no diploma required." },
+    { "icon": "mobility", "title": "European mobility", "text": "Youth exchanges, training courses and volunteering across Europe." }
+  ],
+  "process": [
+    { "title": "Idea and needs", "text": "We start from the real needs of young people and organisations on the ground." },
+    { "title": "Partnership", "text": "We bring together a complementary European consortium and write the project together." },
+    { "title": "Implementation", "text": "Exchanges, training, workshops: we coordinate activities end to end." },
+    { "title": "Impact and dissemination", "text": "We measure results and openly share what we have learned." }
+  ],
+  "values": [
+    { "icon": "light", "title": "Accessibility", "text": "Knowledge is a light that should reach everyone, without barriers." },
+    { "icon": "inclusion", "title": "Inclusion", "text": "We reach out to those with the fewest opportunities." },
+    { "icon": "innovation", "title": "Responsible innovation", "text": "Technology that serves people: Tech for Good, ethical AI." },
+    { "icon": "europe", "title": "European cooperation", "text": "We learn from each other, across borders." },
+    { "icon": "leaf", "title": "Sustainability", "text": "Every action takes its impact on the planet into account." },
+    { "icon": "transparency", "title": "Transparency", "text": "Volunteer-run, non-profit management, with accounts and results shared openly." }
+  ],
+  "about": {
+    "metaTitle": "About",
+    "metaDescription": "Mission, vision, values, team and legal information of LUMEN, a non-profit association based in Paris.",
+    "eyebrow": "About",
+    "title": "Building bridges between technology, education and society",
+    "intro": "Founded in Paris in 2026, LUMEN is a public-interest association working on education, citizenship, the environment and digital skills.",
+    "storyTitle": "Our story",
+    "storyText": [
+      "LUMEN was born from a simple observation: digital transformation is moving fast, but not for everyone. Too many young people are left out of future skills, artificial intelligence and mobility opportunities in Europe.",
+      "We chose the name LUMEN, \"light\" in Latin, because our role is to shed light: to make knowledge accessible, show the paths that exist and support those who take them."
+    ],
+    "tocMission": "Mission and vision",
+    "tocValues": "Values",
+    "tocTeam": "Team",
+    "tocLegal": "Legal information",
+    "objectTitle": "Our purpose (statutes)",
+    "objectText": "To promote non-formal education, digital transformation and technological innovation among young people and professionals through European and international mobility projects, to develop training in future skills (Industry 4.0, artificial intelligence), to support the exchange of good practice and to encourage active citizenship.",
+    "legalTitle": "Legal information",
+    "legalIntro": "For our partners and funders: legal identity and governance.",
+    "legalForm": "Legal form",
+    "legalRna": "RNA number",
+    "legalDeclared": "Declared on",
+    "legalPublication": "Publication",
+    "legalSeat": "Registered office",
+    "legalGovernance": "Governance",
+    "legalGovernanceText": "Board of two members elected for three years; unpaid roles and non-profit management."
+  },
+  "actions": {
+    "metaTitle": "What we do",
+    "metaDescription": "LUMEN's five areas of action: digital inclusion, AI for learning, education and skills, EU projects, social impact.",
+    "eyebrow": "What we do",
+    "title": "What we do",
+    "intro": "Five areas of action, six cross-cutting themes and a method grounded in European programmes.",
+    "formatsTitle": "Our formats",
+    "formats": [
+      { "icon": "exchange", "title": "Youth exchanges", "text": "Intercultural meetings of 5 to 21 days around a shared theme." },
+      { "icon": "training", "title": "Training and seminars", "text": "For youth and education professionals." },
+      { "icon": "webinar", "title": "Workshops and webinars", "text": "Short formats, in person or online." },
+      { "icon": "tools", "title": "Learning tools", "text": "Guides, online modules and studies, designed with our partners." },
+      { "icon": "mobility", "title": "Sending and hosting", "text": "We send and host participants in European mobility." },
+      { "icon": "partnership", "title": "Partnerships", "text": "Cooperation agreements with public, private and non-profit organisations." }
+    ],
+    "approachTitle": "Our approach",
+    "relatedProjects": "Related projects",
+    "otherAreas": "Other areas",
+    "requestProject": "Build a project on this theme"
+  },
+  "projects": {
+    "metaTitle": "Projects",
+    "metaDescription": "European projects designed by LUMEN: digital skills, inclusion, climate and the circular economy.",
+    "eyebrow": "Projects",
+    "title": "Our European projects",
+    "intro": "LUMEN was founded in 2026: our first projects are in preparation. They are open to partners who share our priorities.",
+    "goal": "Goal",
+    "outcomes": "Expected results",
+    "joinTitle": "Join this consortium",
+    "joinText": "Would you like to take part in this project as a partner?",
+    "joinCta": "Propose a partnership",
+    "empty": "No projects published yet."
+  },
+  "partner": {
+    "metaTitle": "Be our partner",
+    "metaDescription": "Build a European project with LUMEN: coordination, partnership, sending and hosting participants.",
+    "eyebrow": "Be our partner",
+    "title": "Let's spark the next project together",
+    "intro": "We are looking for partners in France and across Europe to design and run Erasmus+, European Solidarity Corps, CERV and Horizon Europe projects.",
+    "whyTitle": "Why work with LUMEN",
+    "why": [
+      { "icon": "innovation", "title": "Dual expertise", "text": "Non-formal education and digital engineering in the same team." },
+      { "icon": "europe", "title": "European roots", "text": "A multilingual team (FR, EN, TR) and a growing network across Europe." },
+      { "icon": "leaf", "title": "Sustainable projects", "text": "Green priorities and inclusion built in from the start." },
+      { "icon": "transparency", "title": "Rigour", "text": "Volunteer-run, non-profit management with clear administrative and financial follow-up." }
+    ],
+    "rolesTitle": "Ways to collaborate",
+    "roles": [
+      { "title": "LUMEN as coordinator", "text": "We lead the project and you join the consortium as a partner." },
+      { "title": "LUMEN as partner", "text": "You coordinate, we bring our digital expertise and our target groups." },
+      { "title": "Sending and hosting", "text": "We send or host participants for your mobility activities." },
+      { "title": "Associated partner", "text": "Support, dissemination, co-organising events or workshops." }
+    ],
+    "stepsTitle": "The steps",
+    "steps": [
+      { "title": "First conversation", "text": "You write to us with your idea or call for proposals." },
+      { "title": "Co-design", "text": "Together we define goals, activities and roles." },
+      { "title": "Submission", "text": "Shared writing and submission to the National Agency or EACEA." },
+      { "title": "Delivery", "text": "Implementation, monitoring and dissemination of results." }
+    ],
+    "faqTitle": "Frequently asked questions",
+    "faq": [
+      { "q": "Can LUMEN already coordinate a project?", "a": "Yes for small-scale partnerships and youth exchanges; for larger projects we start as a partner alongside experienced organisations." },
+      { "q": "Do you have an OID number?", "a": "Our registration on the European Commission's organisation platform is in progress. Write to us to get the number as soon as it is issued." },
+      { "q": "Which languages do you work in?", "a": "French, English and Turkish." },
+      { "q": "Which target groups can you involve?", "a": "Young people aged 13 to 30, with priority for those with fewer opportunities, as well as youth and education professionals." }
+    ],
+    "formTitle": "Tell us about your project",
+    "formIntro": "We reply within five working days."
+  },
+  "contact": {
+    "metaTitle": "Contact",
+    "metaDescription": "Contact LUMEN: partnerships, European projects, volunteering or questions.",
+    "eyebrow": "Contact",
+    "title": "Write to us",
+    "intro": "We reply within five working days. Your details are only used to answer you and are not stored on this site.",
+    "directTitle": "Details",
+    "email": "Email",
+    "address": "Address",
+    "form": {
+      "reason": "What is your message about?",
+      "reasons": {
+        "partnership": "Propose a partnership",
+        "project": "A European project",
+        "volunteer": "Volunteer with us",
+        "training": "A training or workshop",
+        "question": "Another question"
+      },
+      "name": "Full name",
+      "email": "Email address",
+      "organization": "Organisation (optional)",
+      "message": "Message",
+      "messageHint": "A few lines are enough: who you are and what you would like to build.",
+      "consent": "I agree that LUMEN may use this information to reply to me.",
+      "submit": "Send message",
+      "sending": "Sending…",
+      "required": "required",
+      "honeypot": "Do not fill in this field",
+      "errorsSummary": "{count, plural, one {The form has one error} other {The form has # errors}}",
+      "errors": {
+        "name": "Please enter your name.",
+        "email": "Please enter a valid email address.",
+        "message": "Your message must be at least 20 characters long.",
+        "consent": "Tick the box so we can reply to you.",
+        "rateLimited": "Too many messages in a short time. Please try again in a few minutes.",
+        "server": "Sending failed. Please try again or email us directly at {email}."
+      },
+      "success": "Thank you, your message has been sent. We will reply within five working days."
+    }
+  },
+  "legal": {
+    "updated": "Last updated: {date}"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "This page does not exist or has moved.",
+    "back": "Back to home"
+  }
+}

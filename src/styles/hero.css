@@ -1,0 +1,212 @@
+/*
+ * Hero light show (src/components/sections/light-hero.tsx).
+ * Layers, back to front: rotating rays → warm beam → drifting particles → shooting light →
+ * the European network (floats, follows the mouse, light pulses travel from Paris along its lines).
+ */
+
+.hero-rays {
+  background: repeating-conic-gradient(from 0deg, rgba(244, 183, 68, 0.1) 0deg 6deg, transparent 6deg 18deg);
+  mask-image: radial-gradient(circle, #000 0%, transparent 62%);
+  border-radius: 50%;
+  will-change: transform;
+  animation: spin 70s linear infinite 1s;
+}
+.hero-glow {
+  background: radial-gradient(circle, rgba(244, 183, 68, 0.55) 0%, rgba(244, 183, 68, 0.12) 35%, transparent 65%);
+  will-change: transform, opacity;
+  animation: breathe 7s var(--ease-in-out-soft) infinite 1s;
+}
+.hero-beam {
+  transform-origin: 100% 0;
+  will-change: transform;
+  animation: sway 14s var(--ease-in-out-soft) infinite;
+}
+
+/* Dust in the beam. */
+.particle {
+  will-change: transform, opacity;
+  animation: float var(--d, 9s) var(--ease-in-out-soft) infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* A streak of light crossing the sky every few seconds. */
+.shooting-light {
+  width: 9rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(253, 233, 184, 0.9));
+  transform: translate3d(-20vw, 0, 0) rotate(-18deg);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: shoot var(--d, 11s) var(--ease-smooth) infinite;
+  animation-delay: var(--delay, 2s);
+}
+@keyframes shoot {
+  0% {
+    transform: translate3d(-20vw, 0, 0) rotate(-18deg);
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  14% {
+    transform: translate3d(70vw, -24vh, 0) rotate(-18deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(70vw, -24vh, 0) rotate(-18deg);
+    opacity: 0;
+  }
+}
+
+/* ------------------------------------------------------------------ network */
+
+/* Wrapper follows the pointer (motion.tsx writes --px / --py, eased). */
+.net-parallax {
+  transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
+  will-change: transform;
+}
+/* The whole network breathes up and down. */
+.net-float {
+  animation: bob 9s var(--ease-in-out-soft) infinite;
+  will-change: transform;
+}
+
+/* On load the network "switches on" from Paris outward: one composited scale + fade of the
+   whole SVG (per-line stroke drawing would run on the main thread during page load). */
+.net-intro {
+  transform-origin: 42.5% 51%;
+  opacity: 0;
+  transform: scale(0.55);
+  will-change: transform, opacity;
+  animation: net-on 1.6s var(--ease-smooth) forwards 0.25s;
+}
+@keyframes net-on {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------- live effects
+ * Looping effects live in HTML (.net-fx) laid over the SVG, not inside it: animations on
+ * SVG children run on the main thread in Chrome (style + layout every frame), whereas
+ * transform/opacity on HTML elements run on the compositor. Positions are percentages of
+ * the 400×400 viewBox. Everything pauses while the hero is off screen (.is-paused). */
+.net-fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.net-fx > * {
+  position: absolute;
+  translate: -50% -50%;
+}
+/* Loops wait until the page has loaded and gone idle (motion.tsx adds .is-live), so they
+   don't compete with first paint and hydration. */
+.js [data-pause-offscreen]:not(.is-live) .net-fx *,
+.js [data-pause-offscreen]:not(.is-live) .hero-rays,
+.js [data-pause-offscreen]:not(.is-live) .hero-glow,
+.js [data-pause-offscreen]:not(.is-live) .hero-beam,
+.js [data-pause-offscreen]:not(.is-live) .particle,
+.js [data-pause-offscreen]:not(.is-live) .shooting-light,
+.js [data-pause-offscreen]:not(.is-live) .net-float,
+.is-paused .net-fx *,
+.is-paused .hero-rays,
+.is-paused .hero-glow,
+.is-paused .hero-beam,
+.is-paused .particle,
+.is-paused .shooting-light,
+.is-paused .net-float,
+.is-paused .text-lumen {
+  animation-play-state: paused !important;
+}
+
+/* Light pulses: a bright comet with a tail travels along each line, source → target. */
+.fx-pulse {
+  translate: 0 -50%;
+  height: 3px;
+  transform-origin: 0 50%;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.fx-pulse > span {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, transparent 62%, var(--pulse-color, #9debfa) 94%, #fff 100%);
+  transform: translate3d(-100%, 0, 0);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: fx-travel var(--d, 3.4s) var(--ease-in-out-soft) infinite;
+  animation-delay: calc(0.4s + var(--delay, 0s));
+}
+@keyframes fx-travel {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(100%, 0, 0);
+    opacity: 0;
+  }
+}
+
+/* Halos twinkle behind the city nodes, one after another. */
+.fx-halo {
+  width: 4.5%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(34, 195, 230, 0.55), rgba(34, 195, 230, 0) 70%);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: twinkle 4.2s var(--ease-in-out-soft) infinite;
+  animation-delay: calc(0.3s + var(--i, 0) * 0.7s);
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.6);
+  }
+}
+
+/* Ripple rings around the light source. */
+.fx-ripple {
+  width: 5.5%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 183, 68, 0.9);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: ripple 5s var(--ease-smooth) infinite;
+  animation-delay: calc(var(--i, 0) * 2.5s);
+}
+@keyframes ripple {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(6);
+    opacity: 0;
+  }
+}
+
+/* A dashed orbit slowly turning around Paris. */
+.fx-orbit {
+  width: 15%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  border: 1px dashed rgba(244, 183, 68, 0.5);
+  will-change: transform;
+  animation: spin 24s linear infinite;
+}

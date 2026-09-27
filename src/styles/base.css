@@ -1,0 +1,49 @@
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
+    /* No global smooth scroll: it made every route change animate back to the top.
+       In-page anchor links scroll smoothly via motion.tsx instead. */
+  }
+  html,
+  body {
+    overflow-x: clip;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition:
+      background-color var(--dur-base) var(--ease-smooth),
+      color var(--dur-base) var(--ease-smooth);
+  }
+  @media (min-width: 48rem) {
+    body {
+      font-size: 1.125rem;
+    }
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 3px solid var(--cyan);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: var(--gold);
+    color: var(--navy);
+  }
+}
