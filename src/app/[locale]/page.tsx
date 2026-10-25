@@ -1,27 +1,20 @@
 /**
  * Home: a numbered, top-to-bottom story. Each section is anchored and listed in the
  * side index (wide screens) so visitors always know where they are.
- * 01 About → 02 Themes → 03 What we do → 04 Green thread → 05 Method → 06 Projects → 07 Values → 08 Team → CTA
+ * 01 About → 02 What we do → 03 Green thread → 04 Projects → 05 Team → CTA.
+ * Mission/vision and values live on /association, the method on /actions and /partenaires.
  */
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/layout/container";
-import {
-  DomainCard,
-  FeatureGrid,
-  GreenBand,
-  MissionVision,
-  Process,
-  ProjectCard,
-  StatsGrid,
-  TeamCard,
-} from "@/components/sections/blocks";
+import { DomainCard, GreenBand, ProjectCard, StatsGrid, TeamCard } from "@/components/sections/blocks";
 import { CtaBand } from "@/components/sections/cta-band";
 import { LightHero } from "@/components/sections/light-hero";
 import { Marquee } from "@/components/sections/marquee";
 import { SectionHeader } from "@/components/sections/section-header";
 import { SectionIndex } from "@/components/sections/section-index";
+import { TeamCarousel } from "@/components/sections/team-carousel";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getActions, getProjects, getTeam } from "@/lib/content";
@@ -36,8 +29,6 @@ export async function generateMetadata({ params }: Props) {
   return { ...pageMetadata({ locale, path: "", description: meta("siteDescription") }), title: { absolute: t("metaTitle") } };
 }
 
-type Item = { icon: string; title: string; text: string };
-
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -45,8 +36,6 @@ export default async function HomePage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "home" });
   const common = await getTranslations({ locale, namespace: "common" });
   const nav = await getTranslations({ locale, namespace: "nav" });
-  const m = await getTranslations({ locale, namespace: "mission" });
-  const root = await getTranslations({ locale });
 
   const domains = getActions(locale);
   const projects = getProjects(locale).slice(0, 3);
@@ -54,12 +43,9 @@ export default async function HomePage({ params }: Props) {
 
   const sections = [
     { id: "about", label: t("aboutEyebrow") },
-    { id: "themes", label: t("themesEyebrow") },
     { id: "domains", label: t("domainsEyebrow") },
     { id: "green", label: t("greenEyebrow") },
-    { id: "method", label: t("processEyebrow") },
     { id: "projects", label: t("projectsEyebrow") },
-    { id: "values", label: t("valuesEyebrow") },
     { id: "team", label: t("teamEyebrow") },
   ];
 
@@ -106,36 +92,22 @@ export default async function HomePage({ params }: Props) {
             </Link>
           </div>
         </Container>
-        <Container className="mt-16 md:mt-20">
-          <MissionVision
-            mission={{ title: m("missionTitle"), text: m("missionText") }}
-            vision={{ title: m("visionTitle"), text: m("visionText") }}
-          />
-        </Container>
-      </section>
-
-      {/* 02 — What we work on */}
-      <section id="themes" aria-labelledby="themes-title" className="scroll-mt-24 bg-surface py-20 md:py-28">
-        <Container>
-          <SectionHeader id="themes-title" index={2} eyebrow={t("themesEyebrow")} title={t("themesTitle")} intro={t("themesIntro")} />
-          <FeatureGrid items={root.raw("themes") as Item[]} numbered />
-        </Container>
       </section>
 
       <Marquee label={t("marqueeLabel")} items={t.raw("marquee") as string[]} />
 
-      {/* 03 — What we do */}
+      {/* 02 — What we do */}
       <section id="domains" aria-labelledby="domains-title" className="scroll-mt-24 py-20 md:py-28">
         <Container>
           <SectionHeader
             id="domains-title"
-            index={3}
+            index={2}
             eyebrow={t("domainsEyebrow")}
             title={t("domainsTitle")}
             intro={t("domainsIntro")}
             action={{ href: "/actions", label: common("seeAll") }}
           />
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="swipe-row grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {domains.map((d, i) => (
               <li key={d.slug} data-reveal style={{ "--i": i % 3 } as React.CSSProperties} className={i === 0 ? "lg:row-span-1" : ""}>
                 <DomainCard index={i + 1} href={`/actions/${d.slug}`} title={d.title} summary={d.summary} image={d.image} icon={d.icon} cta={common("readMore")} />
@@ -159,31 +131,23 @@ export default async function HomePage({ params }: Props) {
         </Container>
       </section>
 
-      {/* 04 — Green thread */}
+      {/* 03 — Green thread */}
       <div id="green" className="scroll-mt-24">
-        <GreenBand id="green-title" index={4} eyebrow={t("greenEyebrow")} title={t("greenTitle")} text={t("greenText")} points={t.raw("greenPoints") as string[]} />
+        <GreenBand id="green-title" index={3} eyebrow={t("greenEyebrow")} title={t("greenTitle")} text={t("greenText")} points={t.raw("greenPoints") as string[]} />
       </div>
 
-      {/* 05 — Method */}
-      <section id="method" aria-labelledby="method-title" className="scroll-mt-24 py-20 md:py-24">
-        <Container>
-          <SectionHeader id="method-title" index={5} eyebrow={t("processEyebrow")} title={t("processTitle")} />
-          <Process steps={root.raw("process") as { title: string; text: string }[]} />
-        </Container>
-      </section>
-
-      {/* 06 — Projects */}
+      {/* 04 — Projects */}
       <section id="projects" aria-labelledby="projects-title" className="scroll-mt-24 bg-surface py-20 md:py-28">
         <Container>
           <SectionHeader
             id="projects-title"
-            index={6}
+            index={4}
             eyebrow={t("projectsEyebrow")}
             title={t("projectsTitle")}
             intro={t("projectsIntro")}
             action={{ href: "/projets", label: common("seeAll") }}
           />
-          <ul className="grid gap-5 md:grid-cols-3">
+          <ul className="swipe-row grid gap-5 md:grid-cols-3">
             {projects.map((p, i) => (
               <li key={p.slug} data-reveal style={{ "--i": i } as React.CSSProperties}>
                 <ProjectCard
@@ -202,25 +166,15 @@ export default async function HomePage({ params }: Props) {
         </Container>
       </section>
 
-      {/* 07 — Values */}
-      <section id="values" aria-labelledby="values-title" className="scroll-mt-24 py-20 md:py-28">
-        <Container>
-          <SectionHeader id="values-title" index={7} eyebrow={t("valuesEyebrow")} title={t("valuesTitle")} align="center" />
-          <FeatureGrid items={root.raw("values") as Item[]} />
-        </Container>
-      </section>
-
-      {/* 08 — Team */}
+      {/* 05 — Team */}
       <section id="team" aria-labelledby="team-title" className="scroll-mt-24 py-12 md:py-16">
         <Container>
-          <SectionHeader id="team-title" index={8} eyebrow={t("teamEyebrow")} title={t("teamTitle")} intro={t("teamIntro")} />
-          <ul className="grid gap-5 lg:grid-cols-2">
-            {team.map((p, i) => (
-              <li key={p.slug} data-reveal style={{ "--i": i } as React.CSSProperties}>
-                <TeamCard name={p.name} role={p.role} title={p.title} bio={p.bio} photo={p.photo} linkedin={p.linkedin} />
-              </li>
+          <SectionHeader id="team-title" index={5} eyebrow={t("teamEyebrow")} title={t("teamTitle")} intro={t("teamIntro")} />
+          <TeamCarousel previousLabel={common("previous")} nextLabel={common("next")}>
+            {team.map((p) => (
+              <TeamCard key={p.slug} name={p.name} role={p.role} title={p.title} bio={p.bio} photo={p.photo} linkedin={p.linkedin} />
             ))}
-          </ul>
+          </TeamCarousel>
         </Container>
       </section>
 

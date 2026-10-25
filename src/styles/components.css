@@ -284,3 +284,25 @@ details[open] .faq-body {
     animation-name: fade-in;
   }
 }
+
+/* Phone swipe row: a card grid becomes one snap-scrolling row below 640px, so long
+   lists (domains, projects) cost one screen of height instead of six. */
+@media (max-width: 639.98px) {
+  .swipe-row {
+    display: flex;
+    gap: 1rem;
+    margin-inline: -1rem;
+    padding: 0 1rem 0.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1rem;
+    scrollbar-width: none;
+  }
+  .swipe-row::-webkit-scrollbar {
+    display: none;
+  }
+  .swipe-row > * {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+  }
+}

@@ -10,6 +10,7 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { PageHeader } from "@/components/sections/page-header";
 import { SectionHeader } from "@/components/sections/section-header";
 import { SectionIndex } from "@/components/sections/section-index";
+import { TeamCarousel } from "@/components/sections/team-carousel";
 import type { Locale } from "@/i18n/routing";
 import { getTeam } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
@@ -30,6 +31,7 @@ export default async function AssociationPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "about" });
   const home = await getTranslations({ locale, namespace: "home" });
   const nav = await getTranslations({ locale, namespace: "nav" });
+  const common = await getTranslations({ locale, namespace: "common" });
   const m = await getTranslations({ locale, namespace: "mission" });
   const root = await getTranslations({ locale });
   const team = getTeam(locale);
@@ -97,13 +99,11 @@ export default async function AssociationPage({ params }: Props) {
       <section id="team" aria-labelledby="team-title" className="scroll-mt-32 bg-surface py-20 md:py-24">
         <Container>
           <SectionHeader id="team-title" index={4} eyebrow={t("tocTeam")} title={home("teamTitle")} intro={home("teamIntro")} />
-          <ul className="grid gap-5 lg:grid-cols-2">
-            {team.map((p, i) => (
-              <li key={p.slug} data-reveal style={{ "--i": i } as React.CSSProperties}>
-                <TeamCard name={p.name} role={p.role} title={p.title} bio={p.bio} photo={p.photo} linkedin={p.linkedin} />
-              </li>
+          <TeamCarousel previousLabel={common("previous")} nextLabel={common("next")}>
+            {team.map((p) => (
+              <TeamCard key={p.slug} name={p.name} role={p.role} title={p.title} bio={p.bio} photo={p.photo} linkedin={p.linkedin} />
             ))}
-          </ul>
+          </TeamCarousel>
         </Container>
       </section>
 

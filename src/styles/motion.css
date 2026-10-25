@@ -37,6 +37,13 @@
 .js [data-reveal].is-done {
   will-change: auto;
 }
+/* Swipe-row cards past the right edge never intersect the viewport: show them as-is. */
+@media (max-width: 639.98px) {
+  .js .swipe-row > [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 /* Page-load entrance for above-the-fold elements (hero text, page headers). */
 .fade-up {

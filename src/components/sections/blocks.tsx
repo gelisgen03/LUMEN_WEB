@@ -288,22 +288,22 @@ export function ProjectCard(p: {
 /* --------------------------------------------------------------- team card */
 export function TeamCard({ name, role, title, bio, photo, linkedin }: { name: string; role: string; title: string; bio: string; photo?: string; linkedin?: string }) {
   return (
-    <article className="spot group grid h-full overflow-hidden rounded-3xl border border-border bg-card sm:grid-cols-[13rem_1fr]">
-      <div className="relative aspect-square overflow-hidden bg-surface sm:aspect-auto">
-        {photo && <Image src={photo} alt={name} fill sizes="(min-width: 640px) 208px, 100vw" className="spot-img object-cover object-top" />}
+    <article className="spot group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card">
+      <div className="relative aspect-[4/3] overflow-hidden bg-surface">
+        {photo && <Image src={photo} alt={name} fill sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 82vw" className="spot-img object-cover object-[50%_18%]" />}
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-gold/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       </div>
-      <div className="flex flex-col p-6 md:p-8">
-        <p className="text-sm font-bold uppercase tracking-[0.12em] text-accent-text">{role}</p>
-        <h3 className="mt-2 text-step-2 font-bold">{name}</h3>
-        <p className="text-base font-medium text-muted">{title}</p>
-        <p className="mt-4 flex-1 text-base text-muted">{bio}</p>
+      <div className="flex flex-1 flex-col p-6">
+        <p className="text-xs font-bold uppercase tracking-[0.12em] text-accent-text">{role}</p>
+        <h3 className="mt-1.5 text-step-1 font-bold leading-tight">{name}</h3>
+        <p className="text-sm font-medium text-muted">{title}</p>
+        <p className="mb-4 mt-3 line-clamp-4 text-sm text-muted">{bio}</p>
         {linkedin && (
           <a
             href={linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 self-start rounded-full border border-border px-4 py-2 text-sm font-semibold transition-colors hover:border-[#0a66c2] hover:bg-[#0a66c2] hover:text-white"
+            className="mt-auto inline-flex items-center gap-2 self-start rounded-full border border-border px-3.5 py-1.5 text-sm font-semibold transition-colors hover:border-[#0a66c2] hover:bg-[#0a66c2] hover:text-white"
           >
             <svg viewBox="0 0 24 24" aria-hidden className="size-4 fill-current">
               <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />

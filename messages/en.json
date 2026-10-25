@@ -41,6 +41,8 @@
   },
   "common": {
     "readMore": "Learn more",
+    "previous": "Previous",
+    "next": "Next",
     "seeAll": "See all",
     "backTo": "Back",
     "forWhom": "Who it's for",
