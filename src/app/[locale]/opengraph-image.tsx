@@ -13,5 +13,5 @@ export function generateStaticParams() {
 export default async function Image({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "home" });
-  return renderOg({ eyebrow: t("heroEyebrow"), title: t("metaTitle").replace(/^LUMEN – /, "") });
+  return renderOg({ eyebrow: t("heroBadge"), title: t("metaTitle").replace(/^LUMEN – /, "") });
 }
