@@ -84,8 +84,8 @@ export function LightHero({ titleLead, titleRest, text, primary, secondary, scro
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-navy to-transparent" />
       </div>
 
-      <Container className="grid items-center gap-10 pb-16 pt-12 md:min-h-[min(88vh,52rem)] md:grid-cols-12 md:pb-24 md:pt-16">
-        <div className="md:col-span-7">
+      <Container className="grid items-center gap-10 pb-16 pt-12 md:pb-20 md:pt-16 lg:min-h-[min(88vh,52rem)] lg:grid-cols-12 lg:pb-24">
+        <div className="lg:col-span-7">
           <h1 className="text-step-5 font-bold">
             <span className="text-lumen">{titleLead}</span> {titleRest}
           </h1>
@@ -95,21 +95,21 @@ export function LightHero({ titleLead, titleRest, text, primary, secondary, scro
           <div className="fade-up mt-9 flex flex-col gap-3 sm:flex-row" style={{ "--delay": "0.4s" } as React.CSSProperties}>
             <Link
               href={primary.href}
-              className="btn-shine group inline-flex h-13 items-center justify-center gap-2 rounded-full bg-gold px-7 font-semibold text-navy shadow-[0_0_40px_-8px_rgba(244,183,68,0.8)] transition-shadow hover:shadow-[0_0_60px_-4px_rgba(244,183,68,0.95)]"
+              className="btn-shine group inline-flex h-13 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-gold px-7 font-semibold text-navy shadow-[0_0_40px_-8px_rgba(244,183,68,0.8)] transition-shadow hover:shadow-[0_0_60px_-4px_rgba(244,183,68,0.95)]"
             >
               {primary.label}
               <ArrowRight aria-hidden className="size-5 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               href={secondary.href}
-              className="group inline-flex h-13 items-center justify-center gap-2 rounded-full border border-white/30 px-7 font-semibold text-white transition-colors hover:border-gold hover:bg-white/5"
+              className="group inline-flex h-13 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/30 px-7 font-semibold text-white transition-colors hover:border-gold hover:bg-white/5"
             >
               {secondary.label}
             </Link>
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[26rem] md:col-span-5 md:max-w-none">
+        <div className="relative mx-auto w-full max-w-[26rem] lg:col-span-5 lg:max-w-none">
           <div aria-hidden className="hero-glow absolute left-[42%] top-[51%] size-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full" />
           <div data-parallax="18" className="net-parallax relative">
           <div className="net-float relative">

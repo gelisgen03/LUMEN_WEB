@@ -9,7 +9,7 @@ import { Logo } from "./logo";
 import { navItems } from "./nav-items";
 
 const heading = "mb-4 text-xs font-bold uppercase tracking-[0.14em] text-[#b9c2d6]";
-const link = "link-grow text-white/85 transition-colors hover:text-gold";
+const link = "link-grow inline-block py-1 text-white/85 transition-colors hover:text-gold";
 
 /** Always navy ("the night the light shines in"), in both themes. */
 export async function SiteFooter({ locale }: { locale: Locale }) {
@@ -41,7 +41,7 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
             <h2 id="footer-explore" className={heading}>
               {t("explore")}
             </h2>
-            <ul className="space-y-2.5 text-base">
+            <ul className="space-y-1 text-base">
               {navItems.map((i) => (
                 <li key={i.href}>
                   <Link href={i.href} className={link}>
